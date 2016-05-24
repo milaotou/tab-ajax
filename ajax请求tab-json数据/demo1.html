@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>milaotou</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .tab{
+            width: 375px;
+            margin: 25px auto;
+        }
+        .tabTit li{
+            float: left;
+            width: 123px;
+            height: 38px;
+            border: 1px solid #00f;
+            text-align: center;
+            background: #ccf;
+            line-height: 38px;
+            list-style: none;
+        }
+        .tabTit li:hover{
+            background: #aaf;
+            cursor: hand;
+            cursor: pointer;
+        }
+        .tabTit .select{
+            background: #99f;
+        }
+        .tabCon{
+            width: 373px;
+            height: 400px;
+            border: 1px solid #00f;
+            border-top: none;
+        }
+        .tabCon h1{
+            font-size: 24px;
+        }
+        .tabCon p{
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div id='tab' class='tab'>
+        <ul id='tabTit' class='tabTit'>
+            <li class='select'>标题一</li>
+            <li>标题二</li>
+            <li>标题三</li>
+        </ul>
+        <div class='tabCon'>
+            <h1 id='tabConTit'>milaotou的博客</h1>
+            <p id='tabInf'>csdn地址 <a href="http://blog.csdn.net/qq_29849641">http://blog.csdn.net/qq_29849641</a>  github地址 <a href="https://github.com/milaotou">https://github.com/milaotou</a></p>
+        </div>
+    </div>
+</body>
+<script src='jquery-1.9.1.min.js'></script>
+<script>
+    $('#tabTit li').click(function(){
+        var index = $(this).index();
+        $.getJSON('tab.json',function(data){
+            $('#tabConTit').html(data[index].tit);
+            $('#tabInf').html(data[index].con);
+        })
+        $(this).addClass('select').siblings().removeClass('select');
+    });
+</script>
+</html>
